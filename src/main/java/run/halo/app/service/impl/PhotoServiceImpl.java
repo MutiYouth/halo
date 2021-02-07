@@ -1,6 +1,7 @@
 package run.halo.app.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -39,7 +40,7 @@ public class PhotoServiceImpl extends AbstractCrudService<Photo, Integer> implem
     }
 
     @Override
-    public List<PhotoDTO> listDtos(Sort sort) {
+    public List<PhotoDTO> listDtos(@NotNull Sort sort) {
         Assert.notNull(sort, "Sort info must not be null");
 
         return listAll(sort).stream().map(photo -> (PhotoDTO) new PhotoDTO().convertFrom(photo)).collect(Collectors.toList());
